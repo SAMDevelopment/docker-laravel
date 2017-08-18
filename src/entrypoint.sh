@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-substitutions="\${APP_LOG_LEVEL} \${APP_DOMAIN}"
+substitutions="\${APP_DOMAIN} \${APP_LOG_LEVEL} \${APP_PUBLIC_DIR}"
 
 if [ ! -f /etc/php/7.1/fpm/php-fpm.conf ]; then
     envsubst "${substitutions}" < /etc/php/7.1/fpm/php-fpm.conf.template > /etc/php/7.1/fpm/php-fpm.conf
