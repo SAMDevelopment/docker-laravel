@@ -19,7 +19,7 @@ RUN apt-get update \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y php7.1-fpm php7.1-cli php7.1-mcrypt php7.1-gd php7.1-mysql \
-       php7.1-mbstring php7.1-xml php7.1-curl php7.1-sqlite3 \
+       php7.1-mbstring php7.1-xml php7.1-curl php7.1-sqlite3 php-xdebug \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && mkdir /run/php \
     && apt-get remove -y --purge software-properties-common \
@@ -43,6 +43,7 @@ COPY entrypoint.sh /bin/entrypoint.sh
 # Set the environment variables.
 ENV APP_LOG_LEVEL notice
 ENV APP_DOMAIN localhost
+ENV APP_ENV development
 
 EXPOSE 80
 
