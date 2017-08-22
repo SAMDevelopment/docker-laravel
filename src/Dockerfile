@@ -15,7 +15,7 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update \
-    && apt-get install -y nginx curl zip unzip software-properties-common supervisor sqlite3 gettext-base \
+    && apt-get install -y curl gettext-base nginx software-properties-common sqlite3 ssl-cert supervisor unzip zip \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y php7.1-fpm php7.1-cli php7.1-mcrypt php7.1-gd php7.1-mysql \
@@ -26,7 +26,7 @@ RUN apt-get update \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/php/7.1/fpm/php-fpm.conf \
-    /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default \
+       /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default \
     && echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Copy config files.
@@ -41,11 +41,12 @@ RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 COPY entrypoint.sh /bin/entrypoint.sh
 
 # Set the environment variables.
-ENV APP_LOG_LEVEL notice
 ENV APP_DOMAIN localhost
 ENV APP_ENV development
+ENV APP_LOG_LEVEL notice
+ENV APP_PUBLIC_DIR public
 
-EXPOSE 80
+EXPOSE 80 443
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
 
