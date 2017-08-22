@@ -46,8 +46,7 @@ ENV APP_ENV development
 ENV APP_LOG_LEVEL notice
 ENV APP_PUBLIC_DIR public
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443
 
 ENTRYPOINT ["/bin/entrypoint.sh"]
 
