@@ -42,9 +42,9 @@ COPY entrypoint.sh /bin/entrypoint.sh
 
 # Set the environment variables.
 ENV APP_DOMAIN localhost
-ENV APP_ENV development
 ENV APP_LOG_LEVEL notice
 ENV APP_PUBLIC_DIR public
+ENV DOCKER_ENV development
 
 EXPOSE 80 443
 
