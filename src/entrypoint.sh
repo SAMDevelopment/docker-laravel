@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
 
+: '================================================
+Setting up configuration files
+==================================================='
+
 substitutions="\${APP_DOMAIN} \${APP_LOG_LEVEL} \${APP_PUBLIC_DIR}"
 
 if [ ! -f /etc/php/7.1/fpm/php-fpm.conf ]; then
     envsubst "${substitutions}" < /etc/php/7.1/fpm/php-fpm.conf.template > /etc/php/7.1/fpm/php-fpm.conf
 fi
 
-if [ ! -f /etc/nginx/sites-available/api.myparcel.com ]; then
+if [ ! -f /etc/nginx/sites-available/default ]; then
     envsubst "${substitutions}" < /etc/nginx/sites-available/default.template > /etc/nginx/sites-available/default
 fi
 
 if [ ! -f /etc/supervisor/conf.d/supervisord.conf ]; then
     envsubst "${substitutions}" < /etc/supervisor/conf.d/supervisord.conf.template > /etc/supervisor/conf.d/supervisord.conf
 fi
+
+: '================================================
+Configuring Xdebug
+==================================================='
 
 if [ ! "${DOCKER_ENV}" == "production" ] && [ ! "${DOCKER_ENV}" == "prod" ]; then
     # Enable xdebug
@@ -26,4 +34,8 @@ fi
 
 sed -i "s/xdebug\.remote_host\=.*/xdebug\.remote_host\=${APP_DOMAIN}/g" /etc/php/7.1/mods-available/xdebug.ini
 
-$@
+: '================================================
+Continue with passed in command
+==================================================='
+
+"$@"
