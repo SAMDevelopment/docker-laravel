@@ -12,6 +12,7 @@ For version changes checkout the [Github releases](https://github.com/SAMDevelop
 ## Setup
 The only step for setup is mounting your php application to `/opt/app`. The container will start your application from the `/opt/app/public` directory.
 
+### Installing Laravel
 To install Laravel into an empty repo, run the following command from that repo:
 
 ```bash
