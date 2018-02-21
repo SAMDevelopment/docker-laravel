@@ -5,7 +5,7 @@
 Laraduck is a simple nginx and php-fpm container to run php applications (such as Laravel). You can combine this with your own (or official) containers: MySQL, Redis, etc.
 
 ## Tags
-- [`1.3.0`, `1.3`, `1`, `latest` *(Dockerfile)*](https://github.com/SAMDevelopment/laraduck/blob/master/src/Dockerfile)
+- [`1.3.1`, `1.3`, `1`, `latest` *(Dockerfile)*](https://github.com/SAMDevelopment/laraduck/blob/master/src/Dockerfile)
 
 For version changes checkout the [Github releases](https://github.com/SAMDevelopment/laraduck/releases).
 
