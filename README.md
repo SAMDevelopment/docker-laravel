@@ -5,12 +5,19 @@
 Laraduck is a simple nginx and php-fpm container to run php applications (such as Laravel). You can combine this with your own (or official) containers: MySQL, Redis, etc.
 
 ## Tags
-- [`1.3.0`, `1.3`, `1`, `latest` *(Dockerfile)*](https://github.com/SAMDevelopment/laraduck/blob/master/src/Dockerfile)
+- [`1.3.1`, `1.3`, `1`, `latest` *(Dockerfile)*](https://github.com/SAMDevelopment/laraduck/blob/master/src/Dockerfile)
 
 For version changes checkout the [Github releases](https://github.com/SAMDevelopment/laraduck/releases).
 
 ## Setup
 The only step for setup is mounting your php application to `/opt/app`. The container will start your application from the `/opt/app/public` directory.
+
+### Installing Laravel
+To install Laravel into an empty repo, run the following command from that repo:
+
+```bash
+docker run --rm -v $(pwd):/opt/app samdevelopment/laraduck composer create-project --prefer-dist laravel/laravel .
+```
 
 ## Laravel on Linux
 Don't forget to set the correct permissions on Linux. (commands run from Laravel root dir)

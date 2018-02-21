@@ -49,6 +49,8 @@ ENV DOCKER_ENV development
 
 EXPOSE 80 443
 
+WORKDIR /opt/app
+
 ENTRYPOINT ["/bin/entrypoint.sh"]
 
 CMD ["/usr/bin/supervisord"]
