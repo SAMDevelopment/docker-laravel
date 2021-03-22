@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 LABEL author="Sam de Vries <mail@samdevelopment.nl>"
 
@@ -18,20 +18,19 @@ RUN apt-get update \
     && apt-get install -y curl gettext-base nginx software-properties-common sqlite3 ssl-cert supervisor unzip zip \
     && add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
-    && apt-get install -y php7.1-fpm php7.1-cli php7.1-mcrypt php7.1-gd php7.1-mysql \
-       php7.1-mbstring php7.1-xml php7.1-curl php7.1-sqlite3 php-xdebug \
+    && apt-get install -y php8.0-fpm php8.0-cli php8.0-mcrypt php8.0-gd php8.0-mysql \
+       php8.0-mbstring php8.0-xml php8.0-curl php8.0-sqlite3 php-xdebug \
     && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
-    && composer global require hirak/prestissimo \
     && mkdir /run/php \
     && apt-get remove -y --purge software-properties-common \
     && apt-get -y autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/php/7.1/fpm/php-fpm.conf \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /etc/php/8.0/fpm/php-fpm.conf \
        /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default \
     && echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Copy config files.
-COPY conf/php-fpm.conf /etc/php/7.1/fpm/php-fpm.conf.template
+COPY conf/php-fpm.conf /etc/php/8.0/fpm/php-fpm.conf.template
 COPY conf/default-site /etc/nginx/sites-available/default.template
 COPY conf/supervisord.conf /etc/supervisor/conf.d/supervisord.conf.template
 
